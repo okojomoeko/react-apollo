@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  my-app:
+    build: ./my-app
+    container_name: my-app
+    volumes:
+      - ./my-app:/home/my-app
+    ports:
+      - 3000:3000
+    tty: true
+  #   depends_on:
+  #     - apollo-graphql-server
+
+  # apollo-graphql-server:
+  #   build: ./apollo-graphql-server
+  #   container_name: apollo-graphql-server
+  #   volumes:
+  #     - ./apollo-graphql-server:/home/apollo-graphql-server
+  #   ports:
+  #     - 4500:4500
+  #   tty: true
+  #   depends_on:
+  #     - mongodb-server
+
+  # mongodb-server:
+  #   build: ./mongodb-server
+  #   container_name: mongodb-server
+  #   volumes:
+  #     - ./mongodb-server/mongodb:/bitnami/mongodb
+  #   ports:
+  #     - 27017:27017
+  #   tty: true
