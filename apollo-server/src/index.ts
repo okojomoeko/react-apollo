@@ -59,7 +59,7 @@ const server = new ApolloServer({
     ({
       user: getUser(req.headers.authorization),
     } as Context),
-  debug: false, // エラーレスポンスにスタックトレースを含ませない、開発環境ではtrueにした方が分析が捗りそう
+  debug: true, // エラーレスポンスにスタックトレースを含ませない、開発環境ではtrueにした方が分析が捗りそう
 });
 
 server.listen().then(({url}) => {
