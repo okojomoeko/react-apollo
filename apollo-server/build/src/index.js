@@ -47,7 +47,7 @@ const server = new apollo_server_1.ApolloServer({
     context: ({ req }) => ({
         user: getUser(req.headers.authorization),
     }),
-    debug: false, // エラーレスポンスにスタックトレースを含ませない、開発環境ではtrueにした方が分析が捗りそう
+    debug: true, // エラーレスポンスにスタックトレースを含ませない、開発環境ではtrueにした方が分析が捗りそう
 });
 server.listen().then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`);

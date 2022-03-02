@@ -8,20 +8,22 @@ services:
       - ./my-app:/home/my-app
     ports:
       - 3000:3000
-    tty: true
-  #   depends_on:
-  #     - apollo-graphql-server
 
-  # apollo-graphql-server:
-  #   build: ./apollo-graphql-server
-  #   container_name: apollo-graphql-server
-  #   volumes:
-  #     - ./apollo-graphql-server:/home/apollo-graphql-server
-  #   ports:
-  #     - 4500:4500
-  #   tty: true
-  #   depends_on:
-  #     - mongodb-server
+    tty: true
+    depends_on:
+      - apollo-server
+
+  apollo-server:
+    build: ./apollo-server
+    container_name: apollo-server
+    volumes:
+      - ./apollo-server:/home/apollo-server
+    ports:
+      - 4000:4000
+    tty: true
+
+    # depends_on:
+    #   - mongodb-server
 
   # mongodb-server:
   #   build: ./mongodb-server

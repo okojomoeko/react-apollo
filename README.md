@@ -1,15 +1,25 @@
 # react-apollo
 
-本来ならば apollo-server で graphql の schema と codegen.yml を管理すべきでない。
-フロントエンドと生成された型定義と schema を共有する必要があるため。
+GraphQL を試すための apollo-server のサンプル。
 
-なので、apollo-server で生成された型と schema を my-app にコピーしている。
+apollo-server を typescript で建てて、react 使って graphql api を叩く。
 
-`my-app`で`npm i`して、`npm start`して`localhost:3000`ひらく
+フロントエンド側で生成された型定義と schema を共有する必要があるため。本来ならば `apollo-server` で graphql の schema と codegen.yml を管理しなくても良い。
 
-`apollo-server`で`npm run dev`して`localhost:4000`で graphql server ひらく
+なので、`apollo-server` で生成された型と schema を my-app にコピーしている。
 
-フロントエンド画面でボタン押して情報取得する
+## Usage
+
+`docker-compose up -d`して、`localhost:3000`を開く
+
+or
+
+各ディレクトリで`npm i`で package install して、
+
+`my-app`で`npm start`、`apollo-server`で`npm run dev`して、
+`localhost:3000`開く
+
+フロントエンド画面でボタン押して情報取得する。
 
 ## 参考
 
