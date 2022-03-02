@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 import {
   ApolloClient,
@@ -10,7 +10,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { Book, BookResolvers, QueryResolvers } from "./types/generated/graphql";
+import { Book } from "./types/generated/graphql";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:4000/graphql",
@@ -34,19 +34,19 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-const getBooks = async () => {
-  const result = await client.query({
-    query: gql`
-      query GetBooks {
-        books {
-          author
-          title
-        }
-      }
-    `,
-  });
-  return result;
-};
+// const getBooks = async () => {
+//   const result = await client.query({
+//     query: gql`
+//       query GetBooks {
+//         books {
+//           author
+//           title
+//         }
+//       }
+//     `,
+//   });
+//   return result;
+// };
 
 const ShowBooks = () => {
   const { loading, error, data } = useQuery(gql`
@@ -61,11 +61,13 @@ const ShowBooks = () => {
   if (error) return <p>Error </p>;
   console.log(data);
   return data.books.map((book: Book) => {
-    <div key={book.title}>
-      <p>
-        {book.title}: {book.author}
-      </p>
-    </div>;
+    return (
+      <div key={book.title}>
+        <p>
+          {book.title}: {book.author}
+        </p>
+      </div>
+    );
   });
 };
 
@@ -83,7 +85,7 @@ function App() {
           >
             Get Books
           </button>
-          <p>ふふ</p>にゃん
+
           {showFlag ? <ShowBooks /> : <p>表示していません</p>}
         </header>
       </div>
