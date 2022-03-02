@@ -48,8 +48,12 @@ const client = new ApolloClient({
 //   return result;
 // };
 
+interface BookData {
+  books: Array<Book>;
+}
+
 const ShowBooks = () => {
-  const { loading, error, data } = useQuery(gql`
+  const { loading, error, data } = useQuery<BookData>(gql`
     {
       books {
         author
@@ -57,18 +61,22 @@ const ShowBooks = () => {
       }
     }
   `);
+
   if (loading) return <p>Loading ... </p>;
-  if (error) return <p>Error </p>;
-  console.log(data);
-  return data.books.map((book: Book) => {
-    return (
-      <div key={book.title}>
-        <p>
-          {book.title}: {book.author}
-        </p>
-      </div>
-    );
-  });
+  if (error || data === undefined) return <p>Error </p>;
+  return (
+    <>
+      {data.books.map((book) => {
+        return (
+          <div key={book.title}>
+            <p>
+              {book.title}: {book.author}
+            </p>
+          </div>
+        );
+      })}
+    </>
+  );
 };
 
 function App() {
